@@ -1,28 +1,41 @@
-CREATING A TOKEN!
-Creating our own token
+# ethproof
+## Overview
+MyToken is simple ethereum smart contract that represent a basic token with functionalities to mint and burn token .
+## Requirement
+1. PUBLIC VARIABLE--token_name,token_abbrv,total_supply(details about token)
+2. MAPPING ADDRESS--map addresses to their respective balances 
+3. mint FUNCTION--increase toltal_supply and balance 
+4. burn FUNCTION--decrase the total_supply and balance and using if statemnet 
+5. CONDITIONAL STATEMENT IN burn FUNCTION
+   
+## Contract details 
 
-Description
-Introduction to Data Types
-Mapping in Solidity
-Functions Demonstration
-Getting Started
-Installing
-• You can use the online Ethereum IDE
+### public variable 
+- string public token_name = "meta";
+- string public token_abbrv = "MTA";
+- uint public total_supply = 0;
 
-Executing program
-• Go to Ethereum IDE(https://remix.ethereum.org/)
-• Create a new file and write your code • // SPDX-License-Identifier: MIT • pragma solidity 0.8.25;
+  ### Mapping
 
-• contract MyToken { • • // public variables here • string public tokenName = "META"; • string public tokenAbbrv = "MTA"; • uint public totalSupply = 0; • • // mapping variable here • mapping(address => uint) public balances; • • // mint function • function mint (address _address, uint _value) public { • totalSupply += _value; • balances[_address] += _value; • } •
-• // burn function • function burn (address _address, uint _value) public { • if (balances[_address] >= _value) { • totalSupply -= _value; • balances[_address] -= _value; • } • } •
-• } •
+- mapping (address => uint) public balances;
 
-• Then complie the code using solidity compiler of IDE Remember the auto compiler option should be enabled
+### Mint Function-
+To mint tokens, call the mint function with the address to receive the tokens and the amount of tokens to mint.
+solidity
 
-• Then go to Deploy and Run transactions
+function mint(address _address, uint _value) public {
+    total_supply += _value;
+    balances[_address] += _value;
+}
 
-Click on deploy
-Something like this will come in the terminal 2. Copy account and paste in the mint function address parameter and pass 1000 as value in the value parameter 3. Then check the total supply
 
-Now paste the same address in the burn function and pass let say value 500 in the value parameter
-Then again check the total supply
+### Burn funtion--
+To burn tokens, call the burn function with the address from which to burn the tokens and the amount of tokens to burn. Ensure the address has enough balance to burn the specified amount.
+solidity
+function burn(address _address, uint _value) public {
+    if (balances[_address] >= _value) {
+        total_supply -= _value;
+        balances[_address] -= _value;
+    }
+}
+`
